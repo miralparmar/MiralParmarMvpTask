@@ -1,0 +1,44 @@
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #E01A76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+#container {
+    position: relative;
+}
+
+#sidedropdown {
+    position: absolute;
+    left: 0px;
+}
+
+#sidepage {
+    position: absolute;
+    right: 0px;
+}
+
+#myPopup {
+    position: relative;
+    height: auto !important;
+}
+
+#myForm {
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+    height: auto;
+}
+
+#areyousure {
+    font-size: 20px;
+    font-weight: normal;
+}
