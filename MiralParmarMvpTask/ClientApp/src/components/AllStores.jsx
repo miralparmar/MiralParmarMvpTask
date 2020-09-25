@@ -4,7 +4,7 @@ import CreateStore from "./CreateStore";
 import EditStore from "./EditStore";
 import DeleteStore from "./DeleteStore";
 import { Dropdown } from "semantic-ui-react";
-import { Pagination, Table } from "semantic-ui-react";
+import { Pagination, Table, Icon } from "semantic-ui-react";
 
 export default class AllStores extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ export default class AllStores extends Component {
   //When Number of entries get changed
   onDropDownChangeEvent = (event, { value }) => {
     //Update table
-    this.getStores();
+    //this.getStores();
     //Update page
     this.setState({ selectedItem: value, currentPage: 1 });
   };
@@ -57,10 +57,24 @@ export default class AllStores extends Component {
   //When page number gets changed
   onPageChange = (event, data) => {
     //Get updated data
-    this.getStores();
+    //this.getStores();
     //Set active page
     this.setState({
       currentPage: data.activePage,
+    });
+  };
+  sortAscending = (columnName) => {
+    var sortedData = this.state.data;
+    sortedData.sort((a, b) => (a[columnName] > b[columnName] ? 1 : -1));
+    this.setState({
+      data: sortedData,
+    });
+  };
+  sortDescending = (columnName) => {
+    var sortedData = this.state.data;
+    sortedData.sort((a, b) => (a[columnName] > b[columnName] ? -1 : 1));
+    this.setState({
+      data: sortedData,
     });
   };
 
@@ -104,8 +118,32 @@ export default class AllStores extends Component {
         <Table striped celled>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Name</Table.HeaderCell>
-              <Table.HeaderCell>Address</Table.HeaderCell>
+              <Table.HeaderCell>Name &nbsp;&nbsp;
+                <Icon
+                  name="triangle down"
+                  color="grey"
+                  fitted
+                  onClick={() => this.sortAscending("name")}
+                />
+                <Icon
+                  name="triangle up"
+                  color="grey"
+                  fitted
+                  onClick={() => this.sortDescending("name")}
+                /></Table.HeaderCell>
+              <Table.HeaderCell>Address &nbsp;&nbsp;
+                <Icon
+                  name="triangle down"
+                  color="grey"
+                  fitted
+                  onClick={() => this.sortAscending("address")}
+                />
+                <Icon
+                  name="triangle up"
+                  color="grey"
+                  fitted
+                  onClick={() => this.sortDescending("address")}
+                /></Table.HeaderCell>
               <Table.HeaderCell>Actions</Table.HeaderCell>
               <Table.HeaderCell>Actions</Table.HeaderCell>
             </Table.Row>

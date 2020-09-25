@@ -5,7 +5,7 @@ import EditProduct from "./EditProduct";
 import DeleteProduct from "./DeleteProduct";
 import { Dropdown } from "semantic-ui-react";
 import { Pagination } from "semantic-ui-react";
-import { Table } from "semantic-ui-react";
+import { Table, Icon } from "semantic-ui-react";
 
 export default class AllProducts extends Component {
   constructor(props) {
@@ -31,7 +31,7 @@ export default class AllProducts extends Component {
   //When Number of entries get changed
   onDropDownChangeEvent = (event, { value }) => {
     //Update table
-    this.getProducts();
+    //this.getProducts();
     //Update page
     this.setState({ selectedItem: value, currentPage: 1 });
   };
@@ -59,10 +59,24 @@ export default class AllProducts extends Component {
   //When page number gets changed
   onPageChange = (event, data) => {
     //Get updated data
-    this.getProducts();
+    //this.getProducts();
     //Set active page
     this.setState({
       currentPage: data.activePage,
+    });
+  };
+  sortAscending = (columnName) => {
+    var sortedData = this.state.data;
+    sortedData.sort((a, b) => (a[columnName] > b[columnName] ? 1 : -1));
+    this.setState({
+      data: sortedData,
+    });
+  };
+  sortDescending = (columnName) => {
+    var sortedData = this.state.data;
+    sortedData.sort((a, b) => (a[columnName] > b[columnName] ? -1 : 1));
+    this.setState({
+      data: sortedData,
     });
   };
 
@@ -104,8 +118,36 @@ export default class AllProducts extends Component {
         <Table striped celled>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Name</Table.HeaderCell>
-              <Table.HeaderCell>Price</Table.HeaderCell>
+              <Table.HeaderCell>Name
+              &nbsp;&nbsp;
+                <Icon
+                  name="triangle down"
+                  color="grey"
+                  fitted
+                  onClick={() => this.sortAscending("name")}
+                />
+                <Icon
+                  name="triangle up"
+                  color="grey"
+                  fitted
+                  onClick={() => this.sortDescending("name")}
+                />
+              </Table.HeaderCell>
+              <Table.HeaderCell>Price
+              &nbsp;&nbsp;
+                <Icon
+                  name="triangle down"
+                  color="grey"
+                  fitted
+                  onClick={() => this.sortAscending("price")}
+                />
+                <Icon
+                  name="triangle up"
+                  color="grey"
+                  fitted
+                  onClick={() => this.sortDescending("price")}
+                />
+              </Table.HeaderCell>
               <Table.HeaderCell>Actions</Table.HeaderCell>
               <Table.HeaderCell>Actions</Table.HeaderCell>
             </Table.Row>

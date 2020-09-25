@@ -8,6 +8,7 @@ import AllCustomers from './components/AllCustomers';
 import AllProducts from './components/AllProducts';
 import AllStores from './components/AllStores';
 import AllSales from './components/AllSales';
+
 import 'semantic-ui-css/semantic.min.css'
 
 
@@ -25,6 +26,8 @@ export default class App extends Component {
             <Route path='/all-products' component={AllProducts} />
             <Route path='/all-stores' component={AllStores} />
             <Route path='/all-sales' component={AllSales} />
+           
+            
       </Layout>
     );
   }
